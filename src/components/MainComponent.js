@@ -10,7 +10,7 @@ import CampsiteInfo from './CampsiteInfoComponent';
 import About from './AboutComponent';
 
 
-const MapStateToProps = state => {
+const mapStateToProps = state => {
   return {
     campsites: state.campsites,
     comments: state.comments,
