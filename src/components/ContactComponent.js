@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap';
-import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
+import { FadeTransform, Fade } from 'react-animation-components'
 
 
 const required = val => val && val.length;
@@ -36,8 +37,7 @@ class Contact extends Component {
 
     
     handleSubmit(values) {
-        console.log('Current state is: ' + JSON.stringify(values));
-        alert('Current state is: ' + JSON.stringify(values));
+        this.props.postFeedback(values.firstName, values.lastName, values.phoneNum, values.email, values.agree, values.contactType, values.feedback);
         this.props.resetFeedbackForm();
     }
 
@@ -47,12 +47,20 @@ class Contact extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col">
+                        <Fade in>
                         <Breadcrumb>
                             <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
                             <BreadcrumbItem active>Contact Us</BreadcrumbItem>
                         </Breadcrumb>
+                        </Fade>
+                        <FadeTransform
+                         in
+                         transformProps={{
+                             exitTransform: "scale(0.5) translateY(-50%)"
+                         }}>
                         <h2>Contact Us</h2>
                         <hr />
+                        </FadeTransform>
                     </div>
                 </div>
 
